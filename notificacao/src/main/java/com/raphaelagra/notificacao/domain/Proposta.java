@@ -20,4 +20,5 @@ public class Proposta {
 	private String observacao;
 
 	private Usuario usuario;
+
 }
