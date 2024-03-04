@@ -8,6 +8,14 @@ O projeto possui 3 microsserviços que se comunicam entre si de forma assíncron
 - notificacao
 - analise-credito
 
+## Tecnologias utilizadas
+- Java 17
+- Spring 
+- PostgreeSQL
+- Docker
+- RabbitMQ
+- Amazon SNS
+
 ## Subindo o front-end
 Para subir o container do front-end da aplicação, execute o comando: 
 ```sh
