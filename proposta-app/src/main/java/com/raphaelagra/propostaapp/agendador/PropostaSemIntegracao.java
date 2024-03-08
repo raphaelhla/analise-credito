@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import com.raphaelagra.propostaapp.entity.Proposta;
 import com.raphaelagra.propostaapp.repository.PropostaRepository;
 import com.raphaelagra.propostaapp.service.NotificacaoRabbitService;
 
@@ -37,15 +36,10 @@ public class PropostaSemIntegracao {
 		propostaRepository.findAllByIntegradaIsFalse().forEach(proposta -> {
 			try {
 				notificacaoRabbitService.notificar(proposta, exchange);
-				atualizarProposta(proposta);
+				propostaRepository.atualizarStatusIntegrada(proposta.getId(), true);
 			} catch (RuntimeException ex) {
 				logger.error(ex.getMessage());
 			}
 		});;
-	}
-
-	private void atualizarProposta(Proposta proposta) {
-		proposta.setIntegrada(true);
-		propostaRepository.save(proposta);
 	}
 }
